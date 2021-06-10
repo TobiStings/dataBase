@@ -33,16 +33,16 @@ create table movie_cast(
  `act_id`  int(10) not null,
  `mov_id` int(30) not null,
  `mov_role` varchar(30) not null,
- constraint foreign key (act_id) references actor(act_id),
- constraint foreign key (mov_id) references movie(mov_id)
+ constraint actor_fk_fk foreign key (act_id) references actor(act_id),
+ constraint oldMovie_fk_fk foreign key (mov_id) references movie(mov_id)
 );
 
 
 create table movie_direction(
  `dir_id`  int(10) not null,
  `mov_id` int(30) not null,
- constraint foreign key (dir_id) references director(dir_id),
- constraint foreign key (mov_id) references movie(mov_id)
+ constraint director_fk_fk foreign key (dir_id) references director(dir_id),
+ constraint myMovie_fk_fk foreign key (mov_id) references movie(mov_id)
 );
 
 create table rating(
@@ -50,8 +50,8 @@ create table rating(
  `rev_id` int(30) not null,
   `rev_star`  int(10) not null,
  `num_o_ratings` int(30) not null,
- constraint foreign key (mov_id) references movie(mov_id),
-  constraint foreign key (rev_id) references reviewer(rev_id)
+ constraint movie_fk_fk foreign key (mov_id) references movie(mov_id),
+  constraint reviewer_fk_fk  foreign key (rev_id) references reviewer(rev_id)
 );
 
 create table reviewer(
@@ -63,6 +63,6 @@ create table reviewer(
 create table movie_genres(
  `mov_id`  int(10) not null,
  `gen_id` int(10) not null,
-  constraint movie_fk_fk foreign key (mov_id) references movie(mov_id),
+  constraint NewMovie_fk_fk foreign key (mov_id) references movie(mov_id),
   constraint genre_fk_fk foreign key (gen_id) references genre(gen_id)
 );
